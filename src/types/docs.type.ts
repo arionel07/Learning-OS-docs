@@ -1,16 +1,36 @@
-// * Frontmatter metadata for a Markdown document.
-// * This data is located at the top of the .md file.
+// ─────────────────────────────────────────────
+// FRONTMATTER
+// ─────────────────────────────────────────────
+
+/** Frontmatter metadata parsed from the top of a .md file */
 export interface IDocFrontmatter {
 	title: string
 	description?: string
+	/** Controls display order in sidebar (lower = higher) */
 	order?: number
+	/** Hide this page from sidebar (e.g. draft) */
+	draft?: boolean
+	/** Wiki-link aliases: [[my alias]] → this page */
+	aliases?: string[]
+	/** Tags for future filtering/search */
+	tags?: string[]
 }
 
-/** Supported languages ​​*/
+// ─────────────────────────────────────────────
+// LANGUAGE & THEME
+// ─────────────────────────────────────────────
+
+/** Supported UI languages */
 export type TLanguage = 'en' | 'ru'
 
-// * Represents a single Markdown document
-// * after reading and parsing from the file system.
+/** Supported color themes */
+export type TTheme = 'light' | 'dark'
+
+// ─────────────────────────────────────────────
+// DOCUMENT
+// ─────────────────────────────────────────────
+
+/** A single Markdown document parsed from the file system */
 export interface IDoc {
 	slug: string[] // editor/links.md
 	frontmatter: IDocFrontmatter // ["editor", "links"]
@@ -18,13 +38,39 @@ export interface IDoc {
 	lang: TLanguage //document language
 }
 
+// ─────────────────────────────────────────────
+// SIDEBAR
+// ─────────────────────────────────────────────
+
 // * Side menu item.
 // * Can be either a page or a group.
 export interface ISidebarItem {
-	title: string //Display text
-	slug: string[] // Link to page
-	children?: ISidebarItem[] // Nested elements (if it's a group)
+	title: string //Display text (from frontmatter.title or folder name)
+	slug: string[] // Slug path segments used to build href
+	isFolder?: boolean // Whether this node is a folder (no direct page)
+	children?: ISidebarItem[] // Nested children (folders or pages)
+	order?: number //From frontmatter — used for sorting
+	draft?: boolean //Hidden drafts are excluded from sidebar
 }
 
-//Supported interface themes.
-export type TTheme = 'light' | 'dark'
+// ─────────────────────────────────────────────
+// WIKI-LINKS
+// ─────────────────────────────────────────────
+
+/** A parsed wiki-link: [[page]] or [[page|alias]] */
+export interface IWikiLink {
+	target: string //Raw target as written: "editor/links" or "links"
+	label: string // Display label
+	resolvedSlug: string[] | null //Resolved slug array after lookup (null if page not found)
+}
+
+// ─────────────────────────────────────────────
+// DOCS INDEX (for wiki-link resolution)
+// ─────────────────────────────────────────────
+
+/**
+ * Flat lookup map built from all docs.
+ * Key: last slug segment or alias → IDoc
+ * Used to resolve [[wiki-links]] quickly.
+ */
+export type TDocsIndex = Map<string, IDoc>

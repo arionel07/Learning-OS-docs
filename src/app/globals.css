@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* main colors
+
+#cbcabf sant
+# white
+#ACB7AB green
+#1F1F1F black
+#B3644B orange
+*/
+
 :root {
 	--background: #ffffff;
 	--foreground: #171717;
@@ -22,15 +31,13 @@
 }
 
 body {
-	/* background: var(--background);
-	color: var(--foreground); */
-	background: #ffff;
-	color: #0a0a0a;
+	background: #f2f2f2;
+	color: #1f1f1f;
 	font-family: Arial, Helvetica, sans-serif;
 }
 .dark body {
-	background: black;
-	color: #ededed;
+	background: #1f1f1f;
+	color: #cbcabf;
 }
 /* html {
 
@@ -40,4 +47,29 @@ body {
 } */
 button {
 	cursor: pointer;
+}
+
+.folder-link-active::before {
+	content: '';
+	position: absolute;
+	left: -8px;
+	bottom: 0px;
+	width: 1px;
+	height: 21px;
+	background-color: #0a0a0a;
+}
+.dark .folder-link-active::before {
+	background-color: #b3644b;
+}
+.folder-link-active-hover:hover::after {
+	content: '';
+	position: absolute;
+	left: -8px;
+	bottom: 0px;
+	width: 1px;
+	height: 21px;
+	background-color: #0a0a0a;
+}
+.dark .folder-link-active-hover:hover::after {
+	background-color: #b3644b;
 }

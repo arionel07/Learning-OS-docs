@@ -24,7 +24,9 @@ export function LanguageSelect() {
 	return (
 		<button
 			onClick={() => handleLanguageChange(lang === 'en' ? 'ru' : 'en')}
-			className="p-2 border rounded cursor-pointer border-zinc-300 bg-zinc-100/30 dark:border-zinc-800 dark:bg-zinc-900 shadow-md"
+			aria-label="Switch language"
+			className="h-8 px-2.5 flex items-center rounded-md
+        text-xs font-medium tracking-wide text-zinc-500 hover:text-zinc-900 dark:text-zinc-40 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-150"
 		>
 			{lang === 'en' ? 'RU' : 'EN'}
 		</button>

@@ -14,9 +14,20 @@ export function ToggleThemeButton() {
 	return (
 		<button
 			onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-			className="p-2 border rounded cursor-pointer border-zinc-300 bg-zinc-100/30 dark:border-zinc-800 dark:bg-zinc-900 shadow-md"
+			aria-label="Toggle theme"
+			className="w-8 h-8 flex items-center justify-center rounded-md text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-150"
 		>
-			{theme === 'light' ? <Moon /> : <Sun />}
+			{theme === 'light' ? (
+				<Moon
+					size={16}
+					strokeWidth={1.5}
+				/>
+			) : (
+				<Sun
+					size={16}
+					strokeWidth={1.5}
+				/>
+			)}
 		</button>
 	)
 }
