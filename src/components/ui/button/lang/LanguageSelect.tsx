@@ -25,7 +25,7 @@ export function LanguageSelect() {
 		<button
 			onClick={() => handleLanguageChange(lang === 'en' ? 'ru' : 'en')}
 			aria-label="Switch language"
-			className="h-8 px-2.5 flex items-center rounded-md text-xs font-medium tracking-wide text-zinc-500 hover:text-zinc-900 dark:text-zinc-40 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-150"
+			className="h-8 px-2.5 flex items-center rounded-md text-xs font-medium tracking-wide text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-150"
 		>
 			{lang === 'en' ? 'RU' : 'EN'}
 		</button>
