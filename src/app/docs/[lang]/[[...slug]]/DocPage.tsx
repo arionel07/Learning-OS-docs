@@ -1,5 +1,6 @@
 'use client'
 
+import { DocSkeleton } from '@/components/ui/loader/DocSkeleton'
 import { parseMarkdown } from '@/lib/markdown.lib'
 import { languageAtom } from '@/store/language.store'
 import { IDoc, TDocsIndex } from '@/types/docs.type'
@@ -43,11 +44,7 @@ export default function DocPage({ doc, indexEntries }: IDocPageProps) {
 		<main className="flex flex-col max-w-5xl mx-auto p-4">
 			<h1 className="text-3xl font-bold mb-4">{doc.frontmatter.title}</h1>
 			{html === '' ? (
-				<div className="animate-pulse space-y-3">
-					<div className="h-4 bg-gray-400 rounded w-3/4" />
-					<div className="h-4 bg-gray-400 rounded w-1/2" />
-					<div className="h-4 bg-gray-400 rounded w-5/6" />
-				</div>
+				<DocSkeleton />
 			) : (
 				<article
 					className="prose prose-invert max-w-none"
