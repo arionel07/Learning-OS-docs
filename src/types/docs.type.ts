@@ -2,6 +2,8 @@
 // FRONTMATTER
 // ─────────────────────────────────────────────
 
+import { ReactNode } from 'react'
+
 /** Frontmatter metadata parsed from the top of a .md file */
 export interface IDocFrontmatter {
 	title: string
@@ -87,14 +89,32 @@ export interface IMDXResult {
 }
 
 /** Props passed to every MDX custom component */
+export interface IMDXComponentProps {
+	children?: ReactNode
+	className?: string
+}
 
 /** Callout types matching visual styles */
+export type TCalloutType = 'info' | 'warning' | 'danger' | 'success' | 'tip'
 
 /** Props for <Callout> MDX component */
+export interface ICalloutProps {
+	type?: TCalloutType
+	title?: string
+	children: ReactNode
+}
 
 /** Single tab item */
-
+export interface ITabItem {
+	label: string
+	children: ReactNode
+}
 /** Props for <Tabs> MDX component */
+export interface ITabsProps {
+	/** Tab labels e.g. ["npm", "yarn", "bun"] */
+	items: string[]
+	children: ReactNode
+}
 
 /** Props for <CodeBlock> MDX component */
 
