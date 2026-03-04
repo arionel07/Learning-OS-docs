@@ -84,3 +84,15 @@ export async function parseMarkdown(
 		.process(processed)
 	return result.toString()
 }
+
+/**
+ * Public alias for injectWikiLinks.
+ * Used by mdx.lib.ts before MDX compilation.
+ */
+export function injectWikiLinksToMd(
+	content: string,
+	index: TDocsIndex,
+	lang: TLanguage
+): string {
+	return injectWikiLinks(content, index, lang)
+}

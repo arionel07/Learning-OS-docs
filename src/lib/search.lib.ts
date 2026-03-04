@@ -1,17 +1,5 @@
-import { IDoc } from '@/types/docs.type'
+import { IDoc, ISearchResult } from '@/types/docs.type'
 import Fuse, { FuseResult, IFuseOptions } from 'fuse.js'
-
-// ─────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────
-export interface ISearchResult {
-	slug: string[]
-	title: string
-	description?: string
-	/** Matched excerpt from content */
-	excerpt: string
-	lang: string
-}
 
 // ─────────────────────────────────────────────
 // CONFIG

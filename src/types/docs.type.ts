@@ -74,3 +74,39 @@ export interface IWikiLink {
  * Used to resolve [[wiki-links]] quickly.
  */
 export type TDocsIndex = Map<string, IDoc>
+
+// ─────────────────────────────────────────────
+// MDX
+// ─────────────────────────────────────────────
+/** Compiled MDX result from next-mdx-remote */
+export interface IMDXResult {
+	/** Compiled React element ready to render */
+	content: React.ReactElement
+	/** Parsed frontmatter from MDX file */
+	frontmatter: Record<string, unknown>
+}
+
+/** Props passed to every MDX custom component */
+
+/** Callout types matching visual styles */
+
+/** Props for <Callout> MDX component */
+
+/** Single tab item */
+
+/** Props for <Tabs> MDX component */
+
+/** Props for <CodeBlock> MDX component */
+
+// ─────────────────────────────────────────────
+// SEARCH
+// ─────────────────────────────────────────────
+/** A single search result returned by searchDocs() */
+export interface ISearchResult {
+	slug: string[]
+	title: string
+	description?: string
+	/** Matched excerpt from content */
+	excerpt: string
+	lang: string
+}

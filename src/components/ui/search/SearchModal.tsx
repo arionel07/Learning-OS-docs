@@ -1,8 +1,8 @@
 'use client'
 
-import { buildSearchIndex, ISearchResult, searchDocs } from '@/lib/search.lib'
+import { buildSearchIndex, searchDocs } from '@/lib/search.lib'
 import { languageAtom } from '@/store/language.store'
-import { IDoc } from '@/types/docs.type'
+import { IDoc, ISearchResult } from '@/types/docs.type'
 import { useAtomValue } from 'jotai'
 import { Search } from 'lucide-react'
 import Link from 'next/link'
