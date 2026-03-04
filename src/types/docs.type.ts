@@ -38,6 +38,7 @@ export interface IDoc {
 	frontmatter: IDocFrontmatter // ["editor", "links"]
 	content: string // markdown content
 	lang: TLanguage //document language
+	isIndex?: boolean
 }
 
 // ─────────────────────────────────────────────
@@ -97,6 +98,17 @@ export interface IMDXComponentProps {
 /** Callout types matching visual styles */
 export type TCalloutType = 'info' | 'warning' | 'danger' | 'success' | 'tip'
 
+// Callout config props
+export interface ICalloutConfigProps {
+	icon: string
+	label: string
+	container: string
+	iconBg: string
+	title: string
+	body: string
+	border: string
+}
+
 /** Props for <Callout> MDX component */
 export interface ICalloutProps {
 	type?: TCalloutType
@@ -109,6 +121,7 @@ export interface ITabItem {
 	label: string
 	children: ReactNode
 }
+
 /** Props for <Tabs> MDX component */
 export interface ITabsProps {
 	/** Tab labels e.g. ["npm", "yarn", "bun"] */
@@ -117,6 +130,13 @@ export interface ITabsProps {
 }
 
 /** Props for <CodeBlock> MDX component */
+export interface ICodeBlockProps {
+	/** Language for syntax highlighting e.g. "typescript" */
+	language?: string
+	/** Optional filename shown in header */
+	filename?: string
+	children: string
+}
 
 // ─────────────────────────────────────────────
 // SEARCH

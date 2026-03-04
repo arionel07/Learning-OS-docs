@@ -1,5 +1,6 @@
 'use client'
 
+import { Breadcrumbs } from '@/components/ui/breadcrumbs/Breadcrumbs'
 import { DocSkeleton } from '@/components/ui/loader/DocSkeleton'
 import { parseMarkdown } from '@/lib/markdown.lib'
 import { languageAtom } from '@/store/language.store'
@@ -42,6 +43,10 @@ export default function DocPage({ doc, indexEntries }: IDocPageProps) {
 
 	return (
 		<main className="flex flex-col max-w-5xl mx-auto p-4">
+			<Breadcrumbs
+				lang={doc.lang}
+				slug={doc.slug}
+			/>
 			<h1 className="text-3xl font-bold mb-4">{doc.frontmatter.title}</h1>
 			{html === '' ? (
 				<DocSkeleton />

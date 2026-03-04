@@ -1,3 +1,4 @@
+import { MDXComponents } from '@/components/mdx/MDXComponents'
 import { IDoc, IMDXResult, TDocsIndex, TLanguage } from '@/types/docs.type'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { injectWikiLinksToMd } from './markdown.lib'
@@ -25,7 +26,7 @@ export async function compileMDXContent(
 
 	const { content, frontmatter } = await compileMDX<Record<string, unknown>>({
 		source: processed,
-		//components: MDXComponents,
+		components: MDXComponents,
 		options: {
 			parseFrontmatter: true,
 			mdxOptions: {

@@ -41,9 +41,23 @@ function parseFrontmatter(data: Record<string, unknown>): IDocFrontmatter {
  */
 export function getDocBySlug(slug: string[], lang: TLanguage = 'en'): IDoc {
 	const filePath = path.join(DOC_PATH, lang, `${slug.join('/')}.md`)
+	const folderPath = path.join(DOC_PATH, lang, slug.join('/'))
 
-	//should throw when file does NOT exist
+	// ← if there is no file but there is a folder, we return index doc
 	if (!fs.existsSync(filePath)) {
+		if (fs.existsSync(folderPath) && fs.statSync(folderPath).isDirectory()) {
+			return {
+				slug,
+				frontmatter: {
+					title: slug[slug.length - 1]
+						.replace(/-/g, ' ')
+						.replace(/\b\w/g, c => c.toUpperCase())
+				},
+				content: '',
+				lang,
+				isIndex: true // folder
+			}
+		}
 		throw new Error(`Документ не найден: ${filePath}`)
 	}
 

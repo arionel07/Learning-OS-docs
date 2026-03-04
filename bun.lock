@@ -6,6 +6,7 @@
       "name": "learningos-docs",
       "dependencies": {
         "@tailwindcss/typography": "^0.5.19",
+        "@types/mdx": "^2.0.13",
         "fs": "^0.0.1-security",
         "fuse.js": "^7.1.0",
         "gray-matter": "^4.0.3",
