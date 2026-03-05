@@ -28,7 +28,7 @@ export function SearchButton({ docs }: ISearchButtonProps) {
 		<>
 			<button
 				onClick={() => setIsOpen(true)}
-				className="flex items-center gap-2 px-3 h-8 rounded-md text-xs text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors duration-150 w-48 cursor-text"
+				className="flex items-center gap-2 px-3 h-8 rounded-md text-xs text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors duration-150 w-38 md:w-48 cursor-text"
 			>
 				{/* Search icon */}
 				<Search size={13} />

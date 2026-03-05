@@ -1,6 +1,7 @@
 import { IDoc, TDocsIndex, TLanguage } from '@/types/docs.type'
 import fs from 'fs'
 import matter from 'gray-matter'
+import { notFound } from 'next/navigation'
 import path from 'path'
 import 'server-only'
 import { IDocFrontmatter } from '../types/docs.type'
@@ -58,7 +59,7 @@ export function getDocBySlug(slug: string[], lang: TLanguage = 'en'): IDoc {
 				isIndex: true // folder
 			}
 		}
-		throw new Error(`Документ не найден: ${filePath}`)
+		notFound()
 	}
 
 	const raw = fs.readFileSync(filePath, 'utf-8')
@@ -135,4 +136,22 @@ export function buildDocsIndex(lang: TLanguage = 'en'): TDocsIndex {
 	}
 
 	return index
+}
+
+/**
+ * Returns prev and next docs relative to current slug.
+ * Based on sorted flat list of all docs.
+ */
+export function getPrevNextDocs(
+	slug: string[],
+	lang: TLanguage
+): { prev: IDoc | null; next: IDoc | null } {
+	const all = getAllDocs(lang).filter(d => !d.frontmatter.draft)
+	const current = slug.join('/')
+	const idx = all.findIndex(d => d.slug.join('/') === current)
+
+	return {
+		prev: idx > 0 ? all[idx - 1] : null,
+		next: idx < all.length - 1 ? all[idx + 1] : null
+	}
 }

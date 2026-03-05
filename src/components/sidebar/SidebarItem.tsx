@@ -81,10 +81,10 @@ const PageNode = memo(function PageNode({
 		<li>
 			<Link
 				href={href}
-				className={`relative block px-2 py-1 rounded transition-colors text-sm ${
+				className={`gap-1.5 relative block px-2 py-1 rounded transition-colors text-sm ${
 					isActive
-						? 'text-[#879b85] dark:text-[#B3644B] underline font-medium folder-link-active'
-						: 'text-[#1f1f1f] dark:text-[#cbcabf] hover:bg-zinc-200 folder-link-active-hover dark:hover:bg-zinc-800'
+						? 'underline font-medium folder-link-active text-[#09090b] bg-[#e4e4e7] dark:text-[#fafafa] dark:bg-[#27272a]'
+						: 'folder-link-active-hover text-[#3f3f46] hover:bg-[#efefef] dark:hover:bg-[#1c1c1e] dark:text-[#a1a1aa]'
 				}`}
 			>
 				{item.title}

@@ -5,3 +5,8 @@ order: 1
 ---
 
 # Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```

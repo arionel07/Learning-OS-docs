@@ -14,17 +14,18 @@ export default async function DocsLayout({ children, params }: ILayoutProps) {
 	const docs: IDoc[] = getAllDocs(lang)
 
 	return (
-		<div className="flex h-screen">
-			<Sidebar
+		<div className="flex h-screen flex-col">
+			<Header
 				docs={docs}
 				lang={lang}
 			/>
-			<div className="flex-1 flex flex-col">
-				<Header
+
+			<div className="flex-1 flex">
+				<Sidebar
 					docs={docs}
 					lang={lang}
 				/>
-				<main className="flex-1 overflow-y-auto">{children}</main>
+				<div className="flex-1 overflow-y-auto">{children}</div>
 			</div>
 		</div>
 	)

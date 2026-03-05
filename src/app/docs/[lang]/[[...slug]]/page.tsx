@@ -1,4 +1,9 @@
-import { buildDocsIndex, getAllDocs, getDocBySlug } from '@/lib/docs.lib'
+import {
+	buildDocsIndex,
+	getAllDocs,
+	getDocBySlug,
+	getPrevNextDocs
+} from '@/lib/docs.lib'
 import { IDoc, TLanguage } from '@/types/docs.type'
 import DocPage from './DocPage'
 import { FolderIndexPage } from './FolderIndexPage'
@@ -35,10 +40,13 @@ export default async function page({ params }: IPageProps) {
 	}
 
 	const index = buildDocsIndex(lang)
+	const { next, prev } = getPrevNextDocs(slug, lang) // next prev
 	return (
 		<DocPage
 			doc={doc}
 			indexEntries={Object.fromEntries(index)}
+			prev={prev}
+			next={next}
 		/>
 	)
 }

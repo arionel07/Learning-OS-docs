@@ -1,5 +1,6 @@
 import { Breadcrumbs } from '@/components/ui/breadcrumbs/Breadcrumbs'
 import { IDoc } from '@/types/docs.type'
+import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 interface IFolderIndexPageProps {
@@ -44,23 +45,10 @@ export function FolderIndexPage({ doc, children }: IFolderIndexPageProps) {
 									{child.frontmatter.title}
 								</span>
 								{/* Arrow */}
-								<svg
-									width="14"
-									height="14"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									className=""
-								>
-									<path d="m9 18 6-6-6-6" />
-								</svg>
-								{/* <ChevronRight
+								<ChevronRight
 									className="text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 group-hover:translate-x-0.5 transition-all duration-150"
 									size={12}
-								/> */}
+								/>
 							</div>
 
 							{child.frontmatter.description && (
