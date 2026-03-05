@@ -17,7 +17,7 @@ interface IHeaderProps {
 export function Header({ docs, lang }: IHeaderProps) {
 	const theme = useAtomValue(themeAtom)
 	return (
-		<header className="sticky top-0 z-50 flex items-center justify-between px-6 h-18 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm">
+		<header className="sticky top-0 z-50 flex items-center justify-between px-6 py-2 h-18 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm">
 			{/* Logo */}
 			<span className="flex items-center text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
 				<div className="w-11 h-11 mr-2">

@@ -67,7 +67,7 @@ export default function NotFound() {
 			</div>
 
 			{/* 404 */}
-			<div className="flex items-center gap-4 mb-8">
+			<div className="flex items-center gap-4 my-8">
 				<span className="text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
 					404
 				</span>

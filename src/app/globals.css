@@ -24,6 +24,16 @@ body {
 	color: #a1a1aa;
 }
 
+::selection {
+	background: black;
+	color: white;
+}
+
+.dark ::selection {
+	background: whitesmoke;
+	color: black;
+}
+
 button {
 	cursor: pointer;
 }
@@ -115,6 +125,34 @@ button {
 
 .dark .folder-link-active-hover:hover::after {
 	background-color: #fafafa;
+}
+
+/* ─────────────────────────────────────────────
+   CUSTOM SCROLLBAR
+───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #d4d4d8;
+	border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #a1a1aa;
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #d4d4d8 transparent;
 }
 
 /* ─────────────────────────────────────────────

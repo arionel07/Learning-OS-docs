@@ -10,3 +10,94 @@ order: 1
 const hello = 'world'
 console.log(hello)
 ```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```
+
+# Get Started
+
+```typescript
+const hello = 'world'
+console.log(hello)
+```

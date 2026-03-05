@@ -52,7 +52,7 @@ export default function DocPage({
 	}, [doc.content, index, doc.lang])
 
 	return (
-		<div className="min-h-full overflow-y-auto">
+		<div className="min-h-full ">
 			<div className="max-w-3xl mx-auto px-8 py-8">
 				{/* Breadcrumbs */}
 				<Breadcrumbs
