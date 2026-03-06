@@ -39,6 +39,7 @@ export interface IDoc {
 	content: string // markdown content
 	lang: TLanguage //document language
 	isIndex?: boolean
+	isMdx?: boolean
 }
 
 // ─────────────────────────────────────────────

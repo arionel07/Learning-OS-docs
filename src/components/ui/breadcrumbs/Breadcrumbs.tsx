@@ -21,6 +21,13 @@ export function Breadcrumbs({ slug, lang }: IBreadcrumbsProps) {
 		isLast: i === slug.length - 1
 	}))
 
+	console.log(
+		'BREADCRUMBS slug:',
+		slug,
+		'crumbs:',
+		crumbs.map(c => c.href)
+	)
+
 	return (
 		<nav
 			aria-label="Breadcrumb"

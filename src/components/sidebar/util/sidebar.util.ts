@@ -12,13 +12,12 @@ import { IDoc, ISidebarItem } from '@/types/docs.type'
  */
 
 export function buildTree(docs: IDoc[]): ISidebarItem[] {
-	// Filter out drafts
 	const visible = docs.filter(d => !d.frontmatter.draft)
-
 	const map: Record<string, ISidebarItem> = {}
 
 	for (const doc of visible) {
 		const rootSegment = doc.slug[0]
+		const isIndex = doc.slug[doc.slug.length - 1] === 'index'
 
 		if (doc.slug.length === 1) {
 			// Top-level page
@@ -32,42 +31,44 @@ export function buildTree(docs: IDoc[]): ISidebarItem[] {
 					children: []
 				}
 			} else {
-				// Node already exists as folder — enrich with real page data
 				map[rootSegment].title = doc.frontmatter.title
 				map[rootSegment].slug = doc.slug
 				map[rootSegment].order = doc.frontmatter.order
 				map[rootSegment].isFolder = false
 			}
 		} else {
-			// Nested page — ensure parent folder node exists
+			// Nested page — обычный дочерний элемент
 			if (!map[rootSegment]) {
 				map[rootSegment] = {
-					title: rootSegment,
+					title: rootSegment
+						.replace(/-/g, ' ')
+						.replace(/\b\w/g, c => c.toUpperCase()),
 					slug: [rootSegment],
 					isFolder: true,
 					children: []
 				}
 			}
 
-			map[rootSegment].children?.push({
-				title: doc.frontmatter.title,
-				slug: doc.slug,
-				order: doc.frontmatter.order,
-				draft: doc.frontmatter.draft,
-				isFolder: false,
-				children: []
-			})
+			// Пропускаем index.md глубже вложенных папок
+			if (!isIndex) {
+				map[rootSegment].children?.push({
+					title: doc.frontmatter.title,
+					slug: doc.slug,
+					order: doc.frontmatter.order,
+					draft: doc.frontmatter.draft,
+					isFolder: false,
+					children: []
+				})
+			}
 		}
 	}
 
-	// Sort children within each folder
 	for (const node of Object.values(map)) {
 		if (node.children?.length) {
 			node.children.sort(sortByOrder)
 		}
 	}
 
-	// Sort top-level nodes
 	return Object.values(map).sort(sortByOrder)
 }
 

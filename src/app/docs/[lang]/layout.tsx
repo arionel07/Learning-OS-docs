@@ -22,12 +22,12 @@ export default async function DocsLayout({ children, params }: ILayoutProps) {
 				lang={lang}
 			/>
 
-			<div className="flex-1 flex">
+			<div className="flex-1 flex overflow-hidden">
 				<Sidebar
 					docs={docs}
 					lang={lang}
 				/>
-				<div className="flex-1 docs-scroll">{children}</div>
+				<div className="flex-1 docs-scroll overflow-y-auto">{children}</div>
 			</div>
 		</div>
 	)

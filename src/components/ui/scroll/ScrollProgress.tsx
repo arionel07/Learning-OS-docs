@@ -1,29 +1,37 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function ScrollProgress() {
 	const [progress, setProgress] = useState(0)
+	const containerRef = useRef<HTMLElement | null>(null)
 
 	useEffect(() => {
 		const handleScroll = () => {
-			const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+			const container = containerRef.current
+			if (!container) return
+			const { scrollTop, scrollHeight, clientHeight } = container
 			const total = scrollHeight - clientHeight
-			const current = total > 0 ? (scrollTop / total) * 100 : 0
-			setProgress(Math.min(100, Math.max(0, current)))
+			setProgress(total > 0 ? Math.min(100, (scrollTop / total) * 100) : 0)
 		}
 
-		window.addEventListener('scroll', handleScroll, { passive: true })
-		return () => window.removeEventListener('scroll', handleScroll)
+		const interval = setInterval(() => {
+			const container = document.querySelector('.docs-scroll') as HTMLElement
+			if (!container) return
+			containerRef.current = container
+			container.addEventListener('scroll', handleScroll, { passive: true })
+			clearInterval(interval)
+		}, 50)
+
+		return () => {
+			clearInterval(interval)
+			containerRef.current?.removeEventListener('scroll', handleScroll)
+		}
 	}, [])
 
 	return (
 		<div className="fixed top-0 left-0 right-0 z-[200] h-[2px] pointer-events-none">
-			{/* Track */}
-			<div className="absolute inset-0 bg-zinc-100 dark:bg-zinc-800/50" />
-
-			{/* Progress — градиент от нейтрального к акцентному */}
 			<div
-				className="absolute inset-y-0 left-0 transition-[width] duration-75 ease-out"
+				className="h-full transition-[width] duration-75 ease-out"
 				style={{
 					width: `${progress}%`,
 					background: `linear-gradient(
@@ -34,11 +42,8 @@ export function ScrollProgress() {
           )`
 				}}
 			/>
-
-			{/* Светящаяся точка на конце */}
 			<div
-				className="absolute top-1/2 -translate-y-1/2 w-1 h-1 rounded-full
-          transition-[left] duration-75 ease-out"
+				className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full transition-[left] duration-75 ease-out"
 				style={{
 					left: `calc(${progress}% - 2px)`,
 					background: '#B3644B',

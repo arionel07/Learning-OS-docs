@@ -41,8 +41,13 @@ function parseFrontmatter(data: Record<string, unknown>): IDocFrontmatter {
  * @param lang - document language
  */
 export function getDocBySlug(slug: string[], lang: TLanguage = 'en'): IDoc {
-	const filePath = path.join(DOC_PATH, lang, `${slug.join('/')}.md`)
+	const mdPath = path.join(DOC_PATH, lang, `${slug.join('/')}.md`)
+	const mdxPath = path.join(DOC_PATH, lang, `${slug.join('/')}.mdx`)
 	const folderPath = path.join(DOC_PATH, lang, slug.join('/'))
+
+	// Determine which file exists
+	const filePath = fs.existsSync(mdxPath) ? mdxPath : mdPath
+	const isMdx = filePath === mdxPath
 
 	// ← if there is no file but there is a folder, we return index doc
 	if (!fs.existsSync(filePath)) {
@@ -66,7 +71,7 @@ export function getDocBySlug(slug: string[], lang: TLanguage = 'en'): IDoc {
 	const { data, content } = matter(raw)
 	const frontmatter = parseFrontmatter(data)
 
-	return { slug, frontmatter, content, lang }
+	return { slug, frontmatter, content, lang, isMdx }
 }
 
 // ─────────────────────────────────────────────
@@ -93,6 +98,8 @@ export function getAllDocs(lang: TLanguage = 'en'): IDoc[] {
 			if (entry.isDirectory()) {
 				docs = docs.concat(walk(entryPath, slug))
 			} else if (entry.isFile() && entry.name.endsWith('.md')) {
+				const slug = [...baseSlug, entry.name.replace(/\.md$/, '')]
+				if (entry.name === 'index.md' && baseSlug.length > 0) continue
 				docs.push(getDocBySlug(slug, lang))
 			}
 		}
@@ -101,6 +108,10 @@ export function getAllDocs(lang: TLanguage = 'en'): IDoc[] {
 	}
 
 	const docs = walk(path.join(DOC_PATH, lang))
+	console.log(
+		'ALL SLUGS:',
+		docs.map(d => d.slug.join('/'))
+	)
 	cache.set(lang, docs)
 	return docs
 }

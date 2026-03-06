@@ -51,7 +51,7 @@ export default function Sidebar({ docs, lang }: ISidebarProps) {
 
 			{/* Sidebar */}
 			<aside
-				className={`fixed top-0 left-0 bottom-0 z-40 w-64 border-r border-[#e4e4e7] pt-20 dark:border-[#27272a] bg-[#fafafa] dark:bg-[#111111] p-4 overflow-y-auto transition-transform duration-250 ease-in-out md:relative md:translate-x-0 md:z-auto md:pt-4 ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+				className={`static top-0 left-0 bottom-0 z-40 w-64 border-r border-[#e4e4e7] pt-20 dark:border-[#27272a] bg-[#fafafa] dark:bg-[#111111] p-4 overflow-y-auto transition-transform duration-250 ease-in-out md:relative md:translate-x-0 md:z-auto md:pt-4 ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}
 			>
 				{/* Шапка с кнопкой закрытия — только мобил */}
